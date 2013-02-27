@@ -1,0 +1,3 @@
+The most common day and hour to commit is Wednesdays and at 16 o'clock.
+
+Looking at all days since the course started there is a clear trend of commits on Wendesdays as suggested by the most common day. However, on last Wednesday (20th. Feb) there was not significant number of commits as seen on the graph produced by running session4. My guess is that happens due to the fact that the due date was moved back a week for that assignment.
