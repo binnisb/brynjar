@@ -2,10 +2,11 @@
 import operator
 import sys
 import datetime
-from matplotlib.pylab import plot
+from matplotlib import pylab as pl
+import numpy as np
+from dateutil import parser
 def get_commits_for_pythonkurs(start=0,end=100000,users_name=[],skip_names=set()):
     import requests
-    from dateutil import parser
     import pandas as pd
     with open("/home/binni/MasterProject/scilifelabpython/Brynjar/secret") as secret:
         password = secret.read().strip()
@@ -56,4 +57,9 @@ if __name__=="__main__":
     (day,hour) = get_most_common_day_and_hour(df)
     date = get_commits_pr_day(df)
     print day,hour
-    plot(sorted(date.keys()), [len(date[x]) for x in sorted(date.keys())] )
+    keys = sorted(date.keys())
+    filtered_plot = filter(lambda x: x >= np.datetime64(datetime.datetime(2013,1,1)),keys)
+    count_pr_day = [len(date[x]) for x in filtered_plot ]
+    to_plot = [parser.parse(str(x)) for x in filtered_plot]
+    pl.bar(to_plot, count_pr_day )
+    pl.show() 
